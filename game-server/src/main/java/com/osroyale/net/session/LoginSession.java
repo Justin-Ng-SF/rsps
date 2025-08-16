@@ -106,11 +106,12 @@ public final class LoginSession extends Session {
         final Argon2Types argon2Type = Argon2.argon2Type(player.getPassword());
         if (argon2Type != Argon2.DEFAULT_TYPE) {
             // needs rehashing (this should be moved onto another thread, as hashing is slow)
-            final String passwordHash = Argon2.getDefault().hash(
-                    Argon2.DEFAULT_ITERATIONS,
-                    Argon2.DEFAULT_MEMORY,
-                    Argon2.DEFAULT_PARALLELISM,
-                    password);
+            final String passwordHash = player.getPassword();
+//            final String passwordHash = Argon2.getDefault().hash(
+//                    Argon2.DEFAULT_ITERATIONS,
+//                    Argon2.DEFAULT_MEMORY,
+//                    Argon2.DEFAULT_PARALLELISM,
+//                    password);
             player.setPassword(passwordHash); // update password to hashed version
         }
 
