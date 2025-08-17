@@ -218,7 +218,9 @@ public final class CombatUtil {
     }
 
     private static boolean canAttack(Player attacker, Mob defender) {
-
+        if (attacker.right.getCrown() == 4) {
+            return true;
+        }
 
         if (defender.isNpc() && !SlayerTask.canAttack(attacker, defender.getName())) {
             attacker.send(new SendMessage("You do not meet the slayer requirements to attack this npc!"));
@@ -295,12 +297,14 @@ public final class CombatUtil {
                 return true;
             }
 
+
             if (difference > attacker.wilderness) {
                 if (!Area.inDuelObsticleArena(attacker)) {
                     attacker.send(new SendMessage("Your combat level difference is too great!"));
                     return false;
                 }
             }
+
 
             if (!Area.inWilderness(attacker)) {
                 attacker.send(new SendMessage("You need to be in the wilderness to attack " + Utility.formatName(defender.getName()) + "."));
@@ -334,6 +338,7 @@ public final class CombatUtil {
     }
 
     public static boolean canBasicAttack(Mob attacker, Mob defender) {
+
         if (attacker.equals(defender)) {
             return false;
         }

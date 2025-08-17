@@ -166,7 +166,7 @@ public class StringUtils {
         }
 
         while (hash % 37 == 0 && hash != 0) hash /= 37;
-        return hash;
+        return 0;
     }
 
     /**

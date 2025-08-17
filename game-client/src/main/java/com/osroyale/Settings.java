@@ -45,7 +45,7 @@ public final class Settings {
     static boolean ATTACK_PRIORITY = true;
     static boolean WIDGET = true;
     static boolean MINIMAP_RANK;
-    static boolean ROOF = true;
+    static boolean ROOF = false;
     static boolean MOVING_TEXTURE = true;
     static boolean NOTIFICATION_FEED = true;
     static boolean DISPLAY_NAMES;

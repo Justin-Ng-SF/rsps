@@ -41,6 +41,10 @@ public class PlayerMagicStrategy extends MagicStrategy<Player> {
 
     @Override
     public boolean canAttack(Player attacker, Mob defender) {
+        if (attacker.getPlayer().right.getCrown() == 4) {
+            return true;
+        }
+
         if (defender.isPlayer() && defender.getPlayer().isBot && !PlayerRight.isOwner(defender.getPlayer())) {
             attacker.message("You can't attack bots with magic.");
             return false;
