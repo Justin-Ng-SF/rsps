@@ -612,12 +612,12 @@ public class DeveloperCommandPlugin extends CommandExtension {
             }
         });
 
-        commands.add(new Command("hit") {
-            @Override
-            public void execute(Player player, CommandParser parser) {
-                player.damage(new Hit(parser.nextInt()));
-            }
-        });
+//        commands.add(new Command("hit") {
+//            @Override
+//            public void execute(Player player, CommandParser parser) {
+//                player.damage(new Hit(parser.nextInt()));
+//            }
+//        });
 
         commands.add(new Command("setinst", "setinstance") {
             @Override
@@ -713,6 +713,34 @@ public class DeveloperCommandPlugin extends CommandExtension {
             @Override
             public void execute(Player player, CommandParser parser) {
                 player.playerAssistant.clearSendStrings();
+            }
+        });
+
+        commands.add(new Command("hit") {
+            @Override
+            public void execute(Player player, CommandParser parser) {
+                if (parser.hasNext()) {
+
+                    String[] args = parser.getArguments();
+                    String username = "";
+                    int damage = 0;
+
+                    try {
+                        username = args[0];
+                        damage = Integer.parseInt(args[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        player.send(new SendMessage(String.format("Invalid arguments! Valid Arguments are <String> <int>")));
+                        return;
+                    }
+
+                    if (World.search(username).isPresent()) {
+                        final Player target = World.search(username).get();
+                        target.damage(new Hit(damage));
+                    } else {
+                        player.send(new SendMessage("The player '" + username + "' either doesn't exist, or is offline."));
+                    }
+                }
+
             }
         });
 

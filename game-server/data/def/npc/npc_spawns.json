@@ -35033,4 +35033,4 @@
       "height": 0
     }
   }
-]
+]  {    "id": 0,    "radius": "5",    "facing": "NORTH",    "position": {      "x": 3086,      "y": 3494,      "height": 0    }  },  {    "id": 3127,    "radius": "5",    "facing": "NORTH",    "position": {      "x": 3086,      "y": 3494,      "height": 0    }  },  {    "id": 965,    "radius": "5",    "facing": "NORTH",    "position": {      "x": 3088,      "y": 3494,      "height": 0    }  },

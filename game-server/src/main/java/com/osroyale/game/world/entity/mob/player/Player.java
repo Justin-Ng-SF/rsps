@@ -79,6 +79,7 @@ import com.osroyale.game.world.entity.mob.movement.waypoint.Waypoint;
 import com.osroyale.game.world.entity.mob.npc.Npc;
 import com.osroyale.game.world.entity.mob.player.appearance.Appearance;
 import com.osroyale.game.world.entity.mob.player.exchange.ExchangeSessionManager;
+import com.osroyale.game.world.entity.mob.player.PlayerRight;
 import com.osroyale.game.world.entity.mob.player.relations.ChatMessage;
 import com.osroyale.game.world.entity.mob.player.relations.PlayerRelation;
 import com.osroyale.game.world.entity.mob.player.requests.PlayerPunishment;
@@ -738,6 +739,10 @@ public class Player extends Mob {
                 interfaceManager.close();
             if (wilderness > 0)
                 wilderness = 0;
+        }
+
+        if (PlayerRight.isDeveloper(this)) {
+            send(new SendPlayerOption(PlayerOption.ATTACK, true));
         }
     }
 

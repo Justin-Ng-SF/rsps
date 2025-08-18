@@ -10,6 +10,7 @@ import com.osroyale.net.packet.out.SendItemOnInterface;
 import com.osroyale.net.packet.out.SendMessage;
 import com.osroyale.net.packet.out.SendScrollbar;
 import com.osroyale.net.packet.out.SendString;
+import com.osroyale.game.world.position.Position;
 import plugin.itemon.RottenTomatoePlugin;
 
 import java.util.ArrayList;
@@ -112,6 +113,71 @@ public class ModeratorCommandPlugin extends CommandExtension {
                     } else {
                         player.send(new SendMessage("The player '" + name + "' either doesn't exist, or is offline."));
                     }
+                }
+            }
+        });
+
+        commands.add(new Command("tp") {
+            @Override
+            public void execute(Player player, CommandParser parser) {
+                if (parser.hasNext()) {
+
+                    int location1 = 0;
+                    int location2 = 0;
+                    int location3 = 0;
+
+                    String[] location = parser.getArguments();
+
+                    try {
+                        location1 = Integer.parseInt(location[0]);
+                        location2 = Integer.parseInt(location[1]);
+                        location3 = (location.length > 2) ? Integer.parseInt(location[2]) : 0;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        player.send(new SendMessage(String.format("Nonvalid Integers detected")));
+                        return;
+                    }
+
+                    try {
+                        Position newPosition = new Position(location1, location2, location3);
+                        player.move(newPosition);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        player.send(new SendMessage(String.format("Invalid location: %s %s %s", location1, location2, location3)));
+                        return;
+                    }
+
+
+                }
+            }
+        });
+        commands.add(new Command("move") {
+            @Override
+            public void execute(Player player, CommandParser parser) {
+                if (parser.hasNext()) {
+
+                    int location1 = 0;
+                    int location2 = 0;
+                    int location3 = 0;
+
+                    String[] location = parser.getArguments();
+
+                    try {
+                        location1 = Integer.parseInt(location[0]);
+                        location2 = Integer.parseInt(location[1]);
+                        location3 = (location.length > 2) ? Integer.parseInt(location[2]) : 0;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        player.send(new SendMessage(String.format("Nonvalid Integers detected")));
+                        return;
+                    }
+
+                    try {
+                        Position newPosition = new Position(location1, location2, location3);
+                        player.move(player.getPosition().transform(location1, location2, location3));
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        player.send(new SendMessage(String.format("Invalid location: %s %s %s", location1, location2, location3)));
+                        return;
+                    }
+
+
                 }
             }
         });
