@@ -5,7 +5,7 @@ Tarnish RSPS updated public release
 ### Setup
 
 * First, clone this repository.
-  `git clone https://github.com/Jire/tarnish.git`  
+  `git clone https://github.com/Justin-Ng-SF/rsps`  
   (or use IntelliJ IDEA's built-in VCS)
 * Next, open the project in IntelliJ IDEA.
 * Make sure you have JDK `21` and JDK `11` (client requires it) both installed in IntelliJ settings. Make sure to select
